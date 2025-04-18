@@ -31,14 +31,14 @@ public class NotificacionAlertaController {
         naS.insert(na);
     }
 
-    @GetMapping("/{idNotificacionAlerta")
+    @GetMapping("/{idNotificacionAlerta}")
     public NotificacionAlertaDTO listarPorId(@PathVariable("idNotificacionAlerta") int idNotificacionAlerta) {
         ModelMapper modelMapper = new ModelMapper();
         NotificacionAlertaDTO naDTO = modelMapper.map(naS.listarId(idNotificacionAlerta), NotificacionAlertaDTO.class);
         return naDTO;
     }
 
-    @DeleteMapping("/{idNotificacionAlerta")
+    @DeleteMapping("/{idNotificacionAlerta}")
     public void eliminar(@PathVariable("idNotificacionAlerta") int idNotificacionAlerta) {
         naS.delete(idNotificacionAlerta);
     }

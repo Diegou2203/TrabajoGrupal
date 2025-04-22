@@ -22,9 +22,9 @@ public class RecursoInformativo {
     private LocalDate fecha_publicacion;
     @Column(name = "fecha_actualizacion", nullable = false)
     private LocalDate fecha_actualizacion;
-    /*@ManyToOne
-    @JoinColumn(name="idUsuario")
-    private Usuario usuario;*/
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public RecursoInformativo() {
     }
@@ -93,5 +93,13 @@ public class RecursoInformativo {
 
     public void setFecha_actualizacion(LocalDate fecha_actualizacion) {
         this.fecha_actualizacion = fecha_actualizacion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

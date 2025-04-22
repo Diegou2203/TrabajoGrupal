@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.dtos;
 
 import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 import pe.edu.upc.safealertweb.entities.Ubicacion;
+import pe.edu.upc.safealertweb.entities.Usuario;
 
 import java.time.LocalDate;
 
@@ -13,6 +14,7 @@ public class NotificacionAlertaDTO {
     private boolean notificacion_revisada;
     private Ubicacion ubicacion;
     private FenomenoNatural fenomenoNatural;
+    private Usuario usuario;
 
     public int getIdNotificacionAlerta() {
         return idNotificacionAlerta;
@@ -68,5 +70,13 @@ public class NotificacionAlertaDTO {
 
     public void setFenomenoNatural(FenomenoNatural fenomenoNatural) {
         this.fenomenoNatural = fenomenoNatural;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

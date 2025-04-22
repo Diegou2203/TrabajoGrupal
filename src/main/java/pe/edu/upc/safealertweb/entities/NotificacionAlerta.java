@@ -18,9 +18,9 @@ public class NotificacionAlerta {
     private LocalDate fecha_expiracion;
     @Column(name = "notificacion_revisada", nullable = false)
     private boolean notificacion_revisada;
-    /*@ManyToOne
-    @JoinColumn(name="idUsuario")
-    private Usuario usuario;*/
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "idUbicacion")
     private Ubicacion ubicacion;
@@ -95,5 +95,13 @@ public class NotificacionAlerta {
 
     public void setFenomenoNatural(FenomenoNatural fenomenoNatural) {
         this.fenomenoNatural = fenomenoNatural;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

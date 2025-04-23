@@ -5,6 +5,7 @@ import pe.edu.upc.safealertweb.entities.ComentarioConsulta;
 
 import java.util.List;
 
+@Repository
 public interface IComentarioConsultaRepository extends JpaRepository<ComentarioConsulta,Integer> {
 
 }

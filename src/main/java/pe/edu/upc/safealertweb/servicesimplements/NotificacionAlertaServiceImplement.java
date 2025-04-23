@@ -37,4 +37,9 @@ public class NotificacionAlertaServiceImplement implements INotificacionAlertaSe
     public void update(NotificacionAlerta na) {
         naR.save(na);
     }
+
+    @Override
+    public List<String[]> quantityNotificacionPorUser() {
+        return naR.quantityNotificacionesPorUsuario();
+    }
 }

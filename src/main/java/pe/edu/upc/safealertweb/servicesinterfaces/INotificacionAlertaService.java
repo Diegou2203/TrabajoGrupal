@@ -14,4 +14,6 @@ public interface INotificacionAlertaService {
     public void delete(int idNotificacionAlerta);
 
     public void update(NotificacionAlerta na);
+
+    public List<String[]> quantityNotificacionPorUser();
 }

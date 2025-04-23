@@ -3,10 +3,12 @@ package pe.edu.upc.safealertweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.safealertweb.dtos.CantidadNotificacionxUserDTO;
 import pe.edu.upc.safealertweb.dtos.NotificacionAlertaDTO;
 import pe.edu.upc.safealertweb.entities.NotificacionAlerta;
 import pe.edu.upc.safealertweb.servicesinterfaces.INotificacionAlertaService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,4 +51,19 @@ public class NotificacionAlertaController {
         NotificacionAlerta na = modelMapper.map(naDTO, NotificacionAlerta.class);
         naS.update(na);
     }
+
+    @GetMapping("/cantidad")
+    public List<CantidadNotificacionxUserDTO> cantidadNotificaciones(){
+        List<CantidadNotificacionxUserDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista=naS.quantityNotificacionPorUser();
+        for(String[] columna:filaLista){
+            CantidadNotificacionxUserDTO dto = new CantidadNotificacionxUserDTO();
+            dto.setNombre(columna[0]);
+            dto.setApellido(columna[1]);
+            dto.setCantidad(Integer.parseInt(columna[2]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
 }

@@ -10,6 +10,7 @@ public class UbicacionDTO {
     private String pais;
     private String codigo_postal;
 
+
     public int getIdUbicacion() {
         return idUbicacion;
     }

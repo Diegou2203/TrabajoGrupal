@@ -2,6 +2,8 @@ package pe.edu.upc.safealertweb.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="FenomenoNatural")
 public class FenomenoNatural {
@@ -13,14 +15,11 @@ public class FenomenoNatural {
     @Column(name = "nombre_fenomeno",nullable = false, length = 30)
     private String nombre_fenomeno;
 
-    @Column(name = "descripcion",nullable = false, length = 200)
-    private String descripcion;
+    @Column(name = "intensidad",nullable = false, length = 10)
+    private String intensidad;
 
-    @Column(name = "categoria",nullable = false, length = 20)
-    private String categoria;
-
-    @Column(name = "nivel_peligrosidad",nullable = false, length = 10)
-    private String nivel_peligrosidad;
+    @Column(name="fecha_fenomeno",nullable = false)
+    private LocalDate fecha_fenomeno;
 
     @Column(name = "activo",nullable = false)
     private boolean activo;
@@ -33,12 +32,11 @@ public class FenomenoNatural {
     public FenomenoNatural() {
     }
 
-    public FenomenoNatural(int idFenomenoNatural, String nombre, String descripcion, String categoria, String nivel_peligrosidad, boolean activo, Ubicacion ubicacion) {
+    public FenomenoNatural(int idFenomenoNatural, String nombre_fenomeno, String intensidad, LocalDate fecha_fenomeno, boolean activo, Ubicacion ubicacion) {
         this.idFenomenoNatural = idFenomenoNatural;
         this.nombre_fenomeno = nombre_fenomeno;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.nivel_peligrosidad = nivel_peligrosidad;
+        this.intensidad = intensidad;
+        this.fecha_fenomeno = fecha_fenomeno;
         this.activo = activo;
         this.ubicacion = ubicacion;
     }
@@ -59,28 +57,20 @@ public class FenomenoNatural {
         this.nombre_fenomeno = nombre_fenomeno;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getIntensidad() {
+        return intensidad;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setIntensidad(String intensidad) {
+        this.intensidad = intensidad;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public LocalDate getFecha_fenomeno() {
+        return fecha_fenomeno;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getNivel_peligrosidad() {
-        return nivel_peligrosidad;
-    }
-
-    public void setNivel_peligrosidad(String nivel_peligrosidad) {
-        this.nivel_peligrosidad = nivel_peligrosidad;
+    public void setFecha_fenomeno(LocalDate fecha_fenomeno) {
+        this.fecha_fenomeno = fecha_fenomeno;
     }
 
     public boolean isActivo() {

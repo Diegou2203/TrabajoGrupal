@@ -3,10 +3,12 @@ package pe.edu.upc.safealertweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.safealertweb.dtos.CantidadUbicacionxFDTO;
 import pe.edu.upc.safealertweb.dtos.FenomenoNaturalDTO;
 import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 import pe.edu.upc.safealertweb.servicesinterfaces.IFenomenoNaturalService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,4 +57,18 @@ public class FenomenoNaturalController {
         FenomenoNatural fn = m.map(fnDTO, FenomenoNatural.class);
         fnS.update(fn);
     }
+
+    @GetMapping("/cantidad")
+    public List<CantidadUbicacionxFDTO> cantidadFenomeno(){
+        List<CantidadUbicacionxFDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista=fnS.quantityFenomenoPorUbicacion();
+        for(String[] columna:filaLista){
+            CantidadUbicacionxFDTO dto = new CantidadUbicacionxFDTO();
+            dto.setCiudad(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
 }

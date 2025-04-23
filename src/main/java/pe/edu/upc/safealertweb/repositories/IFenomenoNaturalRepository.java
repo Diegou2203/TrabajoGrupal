@@ -6,6 +6,7 @@ import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 
 import java.util.List;
 
+@Repository
 public interface IFenomenoNaturalRepository extends JpaRepository<FenomenoNatural, Integer> {
 
     @Query(value="SELECT u.ciudad, COUNT(fn.id_fenomeno_natural) AS CantidadFemonemos\n" +

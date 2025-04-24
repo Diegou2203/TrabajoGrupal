@@ -1,6 +1,6 @@
 package pe.edu.upc.safealertweb.dtos;
 
-//import pe.edu.upc.safealertweb.entities.Usuario;
+import pe.edu.upc.safealertweb.entities.Usuario;
 
 import java.time.LocalDate;
 
@@ -12,7 +12,7 @@ public class RecursoInformativoDTO {
     private String urlContenido;
     private LocalDate fecha_publicacion;
     private LocalDate fecha_actualizacion;
-    //private Usuario usuario;
+    private Usuario usuario;
 
     public int getIdRecursoInformativo() {
         return idRecursoInformativo;
@@ -68,5 +68,13 @@ public class RecursoInformativoDTO {
 
     public void setFecha_actualizacion(LocalDate fecha_actualizacion) {
         this.fecha_actualizacion = fecha_actualizacion;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

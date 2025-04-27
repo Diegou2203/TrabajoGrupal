@@ -37,4 +37,9 @@ public class RecursoInformativoServiceImplement implements IRecursoInformativoSe
     public void update(RecursoInformativo ri) {
         riR.save(ri);
     }
+
+    @Override
+    public List<String[]> cantidadRecursosPorUsuario() {
+        return riR.cantidadRecursosPorUsuario();
+    }
 }

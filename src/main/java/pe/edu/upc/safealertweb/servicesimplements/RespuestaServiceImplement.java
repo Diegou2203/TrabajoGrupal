@@ -9,9 +9,9 @@ import pe.edu.upc.safealertweb.repositories.IRespuestaRepository;
 import pe.edu.upc.safealertweb.servicesinterfaces.IRespuestaService;
 
 import java.util.List;
+
 @Service
 public class RespuestaServiceImplement implements IRespuestaService {
-
     @Autowired
     private IRespuestaRepository reR;
 
@@ -22,7 +22,8 @@ public class RespuestaServiceImplement implements IRespuestaService {
 
     @Override
     public void insert(Respuesta re) {
-        reR.save(re);}
+        reR.save(re);
+    }
 
     @Override
     public Respuesta listarId(int idRespuesta) {
@@ -37,5 +38,10 @@ public class RespuestaServiceImplement implements IRespuestaService {
     @Override
     public void update(Respuesta re) {
         reR.save(re);
+    }
+
+    @Override
+    public List<String[]> cantidadRespuestasPorComentario() {
+        return reR.cantidadRespuestasPorComentario();
     }
 }

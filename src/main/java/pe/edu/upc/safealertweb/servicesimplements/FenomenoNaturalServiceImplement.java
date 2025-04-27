@@ -32,4 +32,9 @@ public class FenomenoNaturalServiceImplement implements IFenomenoNaturalService 
     public List<String[]> quantityFenomenoPorUbicacion() {
         return fnR.quantityFenomenoPorUbicacion();
     }
+
+    @Override
+    public List<String[]> findHistoricoFenomenosPorIntensidad() {
+        return fnR.findHistoricoFenomenosPorIntensidad();
+    }
 }

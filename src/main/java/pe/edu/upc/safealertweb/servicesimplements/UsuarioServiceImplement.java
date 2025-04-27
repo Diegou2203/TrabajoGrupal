@@ -28,4 +28,9 @@ public class UsuarioServiceImplement implements IUsuarioService {
 
     @Override
     public void update(Usuario u) {uR.save(u);}
+
+    @Override
+    public List<String[]> findUsuariosEnZonasDeAltoRiesgo() {
+        return uR.findUsuariosEnZonasDeAltoRiesgo();
+    }
 }

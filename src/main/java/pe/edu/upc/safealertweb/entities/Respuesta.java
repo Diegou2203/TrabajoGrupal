@@ -3,7 +3,8 @@ package pe.edu.upc.safealertweb.entities;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Entity
 @Table(name = "Respuesta")
@@ -19,9 +20,9 @@ public class Respuesta {
     @Column(name = "icono",nullable = false, length = 50)
     private String icono;
     @Column(name = "fechacreacion",nullable = false)
-    private LocalDateTime fechacreacion;
+    private LocalDate fechacreacion;
     @Column(name = "fechaactualizacion",nullable = false)
-    private LocalDateTime fechaactualizacion;
+    private LocalDate fechaactualizacion;
 
     @ManyToOne
     @JoinColumn(name="idComentario")
@@ -34,7 +35,7 @@ public class Respuesta {
     public Respuesta() {
     }
 
-    public Respuesta(int idRespuesta, String titulo, String contenido, String icono, LocalDateTime fechacreacion, LocalDateTime fechaactualizacion, ComentarioConsulta comentarioconsulta, Rol rol) {
+    public Respuesta(int idRespuesta, String titulo, String contenido, String icono, LocalDate fechacreacion, LocalDate fechaactualizacion, ComentarioConsulta comentarioconsulta, Rol rol) {
         this.idRespuesta = idRespuesta;
         this.titulo = titulo;
         this.contenido = contenido;
@@ -77,19 +78,19 @@ public class Respuesta {
         this.icono = icono;
     }
 
-    public LocalDateTime getFechacreacion() {
+    public LocalDate getFechacreacion() {
         return fechacreacion;
     }
 
-    public void setFechacreacion(LocalDateTime fechacreacion) {
+    public void setFechacreacion(LocalDate fechacreacion) {
         this.fechacreacion = fechacreacion;
     }
 
-    public LocalDateTime getFechaactualizacion() {
+    public LocalDate getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(LocalDateTime fechaactualizacion) {
+    public void setFechaactualizacion(LocalDate fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 

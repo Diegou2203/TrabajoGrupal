@@ -9,8 +9,9 @@ import java.util.List;
 
 @Repository
 public interface IRespuestaRepository extends JpaRepository<Respuesta, Integer> {
-    @Query(value = "SELECT cc.contenido, cc.estado, COUNT(id_respuesta) \n" +
-            "FROM comentario_consulta cc INNER JOIN respuesta r ON cc.id_comentario=r.id_comentario \n" +
-            "WHERE r.fechacreacion = CURRENT_DATE GROUP BY cc.contenido, cc.estado", nativeQuery = true)
+    @Query(value = "SELECT cc.contenido, cc.estado, COUNT(id_respuesta)\n" +
+            "FROM comentario_consulta cc\n" +
+            "INNER JOIN respuesta r ON cc.id_comentario = r.id_comentario\n" +
+            "GROUP BY cc.contenido, cc.estado", nativeQuery = true)
     public List<String[]> cantidadRespuestasPorComentario();
 }

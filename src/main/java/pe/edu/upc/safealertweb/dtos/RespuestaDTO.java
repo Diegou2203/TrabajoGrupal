@@ -6,6 +6,7 @@ import jakarta.persistence.ManyToOne;
 import pe.edu.upc.safealertweb.entities.ComentarioConsulta;
 import pe.edu.upc.safealertweb.entities.Rol;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class RespuestaDTO {
@@ -13,8 +14,8 @@ public class RespuestaDTO {
     private String titulo;
     private String contenido;
     private String icono;
-    private LocalDateTime fechacreacion;
-    private LocalDateTime fechaactualizacion;
+    private LocalDate fechacreacion;
+    private LocalDate fechaactualizacion;
     private ComentarioConsulta comentarioconsulta;
     private Rol rol;
 
@@ -50,19 +51,19 @@ public class RespuestaDTO {
         this.icono = icono;
     }
 
-    public LocalDateTime getFechacreacion() {
+    public LocalDate getFechacreacion() {
         return fechacreacion;
     }
 
-    public void setFechacreacion(LocalDateTime fechacreacion) {
+    public void setFechacreacion(LocalDate fechacreacion) {
         this.fechacreacion = fechacreacion;
     }
 
-    public LocalDateTime getFechaactualizacion() {
+    public LocalDate getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(LocalDateTime fechaactualizacion) {
+    public void setFechaactualizacion(LocalDate fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 

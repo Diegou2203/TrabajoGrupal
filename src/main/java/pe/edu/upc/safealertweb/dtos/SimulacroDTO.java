@@ -2,12 +2,13 @@ package pe.edu.upc.safealertweb.dtos;
 
 import pe.edu.upc.safealertweb.entities.Ubicacion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class SimulacroDTO {
     private int idSimulacro;
     private String titulo;
-    private LocalDateTime fecha_hora;
+    private LocalDate fecha_hora;
     private int duracion_minutos;
     private String tipo;
     private boolean es_nacional;
@@ -30,11 +31,11 @@ public class SimulacroDTO {
         this.titulo = titulo;
     }
 
-    public LocalDateTime getFecha_hora() {
+    public LocalDate getFecha_hora() {
         return fecha_hora;
     }
 
-    public void setFecha_hora(LocalDateTime fecha_hora) {
+    public void setFecha_hora(LocalDate fecha_hora) {
         this.fecha_hora = fecha_hora;
     }
 

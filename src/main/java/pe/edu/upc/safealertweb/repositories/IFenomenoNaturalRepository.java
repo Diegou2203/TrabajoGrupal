@@ -17,11 +17,11 @@ public interface IFenomenoNaturalRepository extends JpaRepository<FenomenoNatura
             "GROUP BY u.ciudad", nativeQuery = true)
     public List<String[]> quantityFenomenoPorUbicacion();
 
-    @Query(value = "SELECT intensidad, " +
+    @Query(value = "SELECT UPPER(intensidad), " +
             "EXTRACT(YEAR FROM fecha_fenomeno) AS año, " +
             "COUNT(*) AS cantidad " +
             "FROM fenomeno_natural " +
-            "GROUP BY intensidad, EXTRACT(YEAR FROM fecha_fenomeno) " +
+            "GROUP BY UPPER(intensidad), EXTRACT(YEAR FROM fecha_fenomeno) " +
             "ORDER BY año, cantidad DESC",
             nativeQuery = true)
     public List<String[]> findHistoricoFenomenosPorIntensidad();

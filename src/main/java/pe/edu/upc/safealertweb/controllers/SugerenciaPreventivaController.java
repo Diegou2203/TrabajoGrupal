@@ -47,7 +47,7 @@ public class SugerenciaPreventivaController {
 
 
     @PutMapping
-    public void modificarSugerenciaPreventiva(@RequestBody SugerenciaPreventiva spDTO) {
+    public void modificarSugerenciaPreventiva(@RequestBody SugerenciaPreventivaDTO spDTO) {
         ModelMapper m = new ModelMapper();
         SugerenciaPreventiva sp = m.map(spDTO, SugerenciaPreventiva.class);
         spS.update(sp);

@@ -55,7 +55,7 @@ public class RespuestaController {
 
     //PUT
     @PutMapping
-    public void modificar(@RequestBody Respuesta reDTO) {
+    public void modificar(@RequestBody RespuestaDTO reDTO) {
         ModelMapper m = new ModelMapper();
         Respuesta re = m.map(reDTO, Respuesta.class);
         reS.update(re);

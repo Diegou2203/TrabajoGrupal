@@ -53,7 +53,7 @@ public class ComentarioConsultaController {
 
     //PUT
     @PutMapping
-    public void modificar(@RequestBody ComentarioConsulta coDTO) {
+    public void modificar(@RequestBody ComentarioConsultaDTO coDTO) {
         ModelMapper m = new ModelMapper();
         ComentarioConsulta co = m.map(coDTO, ComentarioConsulta.class);
         coS.update(co);

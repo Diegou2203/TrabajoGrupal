@@ -51,7 +51,7 @@ public class SimulacroController {
 
     //PUT
     @PutMapping
-    public void modificar(@RequestBody Simulacro sDTO) {
+    public void modificar(@RequestBody SimulacroDTO sDTO) {
         ModelMapper m = new ModelMapper();
         Simulacro s = m.map(sDTO, Simulacro.class);
         sS.update(s);

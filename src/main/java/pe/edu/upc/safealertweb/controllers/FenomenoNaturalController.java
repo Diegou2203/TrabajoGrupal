@@ -53,7 +53,7 @@ public class FenomenoNaturalController {
 
     //PUT
     @PutMapping
-    public void modificar(@RequestBody FenomenoNatural fnDTO) {
+    public void modificar(@RequestBody FenomenoNaturalDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         FenomenoNatural fn = m.map(fnDTO, FenomenoNatural.class);
         fnS.update(fn);

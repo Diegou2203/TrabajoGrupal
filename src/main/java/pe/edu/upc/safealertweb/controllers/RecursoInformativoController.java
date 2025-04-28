@@ -46,7 +46,7 @@ public class RecursoInformativoController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody RecursoInformativo riDTO) {
+    public void modificar(@RequestBody RecursoInformativoDTO riDTO) {
         ModelMapper modelMapper = new ModelMapper();
         RecursoInformativo ri = modelMapper.map(riDTO, RecursoInformativo.class);
         riS.update(ri);

@@ -51,7 +51,7 @@ public class UsuarioController {
 
     //PUT
     @PutMapping
-    public void modificarUsuario(@RequestBody Usuario fnDTO) {
+    public void modificarUsuario(@RequestBody UsuarioDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(fnDTO, Usuario.class);
         uS.update(u);

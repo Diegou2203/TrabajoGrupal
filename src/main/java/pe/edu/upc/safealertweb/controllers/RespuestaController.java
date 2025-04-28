@@ -61,7 +61,7 @@ public class RespuestaController {
         reS.update(re);
     }
 
-    @GetMapping("/cantidadPorComentario")
+    @GetMapping("/CantidadRespuestasPorComentario")
     public List<CantidadRespuestaxComentarioDTO> cantidadRespuestas() {
         List<CantidadRespuestaxComentarioDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista = reS.cantidadRespuestasPorComentario();

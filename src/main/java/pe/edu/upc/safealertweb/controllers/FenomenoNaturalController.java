@@ -59,7 +59,7 @@ public class FenomenoNaturalController {
         fnS.update(fn);
     }
 
-    @GetMapping("/cantidad")
+    @GetMapping("/CantidadFenomenosNaturalesPorUbicacion")
     public List<CantidadUbicacionxFDTO> cantidadFenomeno(){
         List<CantidadUbicacionxFDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=fnS.quantityFenomenoPorUbicacion();
@@ -72,7 +72,7 @@ public class FenomenoNaturalController {
         return dtoLista;
     }
 
-    @GetMapping("/historicointensidad")
+    @GetMapping("/HistoricoPorIntensidad")
     public List<HistoricoFenomenosDTO> obtenerHistoricoPorIntensidad() {
         List<String[]> data = fnS.findHistoricoFenomenosPorIntensidad();
         List<HistoricoFenomenosDTO> dtos = new ArrayList<>();

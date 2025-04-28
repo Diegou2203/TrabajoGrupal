@@ -52,7 +52,7 @@ public class RecursoInformativoController {
         riS.update(ri);
     }
 
-    @GetMapping("/cantidadPorUsuario")
+    @GetMapping("/CantidadRecursosPorUsuario")
     public List<CantidadRecursoxUsuarioDTO> cantidadRecursos() {
         List<CantidadRecursoxUsuarioDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista = riS.cantidadRecursosPorUsuario();

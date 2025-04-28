@@ -57,7 +57,7 @@ public class UsuarioController {
         uS.update(u);
     }
 
-    @GetMapping("/altoriesgo")
+    @GetMapping("/ListaUsuariosPorZonasAltoRiesgo")
     public List<UsuariosAltoRiesgoDTO> ListarUsuariosEnZonasDeAltoRiesgo() {
         List<String[]> data = uS.findUsuariosEnZonasDeAltoRiesgo();
         List<UsuariosAltoRiesgoDTO> dtos = new ArrayList<>();

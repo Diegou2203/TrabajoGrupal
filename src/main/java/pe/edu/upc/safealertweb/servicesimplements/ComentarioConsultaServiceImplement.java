@@ -7,6 +7,7 @@ import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 import pe.edu.upc.safealertweb.repositories.IComentarioConsultaRepository;
 import pe.edu.upc.safealertweb.servicesinterfaces.IComentarioConsultaService;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class ComentarioConsultaServiceImplement implements IComentarioConsultaService {
@@ -31,4 +32,11 @@ public class ComentarioConsultaServiceImplement implements IComentarioConsultaSe
     @Override
     public void update(ComentarioConsulta co) {
         coR.save(co);}
+
+
+
+    @Override
+    public List<String[]> contarcomentariousuario() {
+        return coR.contarcomentariousuario();
+    }
 }

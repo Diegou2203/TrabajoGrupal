@@ -1,21 +1,22 @@
 package pe.edu.upc.safealertweb.controllers;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.ComentarioConsultaDTO;
-import pe.edu.upc.safealertweb.dtos.FenomenoNaturalDTO;
+import pe.edu.upc.safealertweb.dtos.ContarComentarioDTO;
 import pe.edu.upc.safealertweb.entities.ComentarioConsulta;
-import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 import pe.edu.upc.safealertweb.servicesinterfaces.IComentarioConsultaService;
-import pe.edu.upc.safealertweb.servicesinterfaces.IFenomenoNaturalService;
 
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("comentario")
 public class ComentarioConsultaController {
+
     @Autowired
     private IComentarioConsultaService coS;
     //GET TODA LA LISTA
@@ -57,5 +58,18 @@ public class ComentarioConsultaController {
         ModelMapper m = new ModelMapper();
         ComentarioConsulta co = m.map(coDTO, ComentarioConsulta.class);
         coS.update(co);
+    }
+
+    @GetMapping("/cantidades")
+    public List<ContarComentarioDTO> cantidadPorcomentario() {
+        List<ContarComentarioDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = coS.contarcomentariousuario();
+        for (String[] columna : filaLista) {
+            ContarComentarioDTO dto = new ContarComentarioDTO();
+            dto.setNombre(columna[0]);
+            dto.setContarcomentario(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

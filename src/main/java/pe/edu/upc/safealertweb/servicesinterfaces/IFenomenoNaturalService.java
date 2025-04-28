@@ -11,4 +11,9 @@ public interface IFenomenoNaturalService {
     public FenomenoNatural listarId(int idFenomenoNatural);
     public void delete(int idFenomenoNatural);
     public void update(FenomenoNatural fn);
+
+    //queries
+    public List<String[]> quantityFenomenoPorUbicacion();
+
+    public List<String[]> findHistoricoFenomenosPorIntensidad();
 }

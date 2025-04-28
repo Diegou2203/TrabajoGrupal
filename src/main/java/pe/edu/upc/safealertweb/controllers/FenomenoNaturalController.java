@@ -3,10 +3,13 @@ package pe.edu.upc.safealertweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.safealertweb.dtos.CantidadUbicacionxFDTO;
 import pe.edu.upc.safealertweb.dtos.FenomenoNaturalDTO;
+import pe.edu.upc.safealertweb.dtos.HistoricoFenomenosDTO;
 import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 import pe.edu.upc.safealertweb.servicesinterfaces.IFenomenoNaturalService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,5 +57,33 @@ public class FenomenoNaturalController {
         ModelMapper m = new ModelMapper();
         FenomenoNatural fn = m.map(fnDTO, FenomenoNatural.class);
         fnS.update(fn);
+    }
+
+    @GetMapping("/CantidadFenomenosNaturalesPorUbicacion")
+    public List<CantidadUbicacionxFDTO> cantidadFenomeno(){
+        List<CantidadUbicacionxFDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista=fnS.quantityFenomenoPorUbicacion();
+        for(String[] columna:filaLista){
+            CantidadUbicacionxFDTO dto = new CantidadUbicacionxFDTO();
+            dto.setCiudad(columna[0]);
+            dto.setCantidad(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+    @GetMapping("/HistoricoPorIntensidad")
+    public List<HistoricoFenomenosDTO> obtenerHistoricoPorIntensidad() {
+        List<String[]> data = fnS.findHistoricoFenomenosPorIntensidad();
+        List<HistoricoFenomenosDTO> dtos = new ArrayList<>();
+
+        for (String[] row : data) {
+            HistoricoFenomenosDTO dto = new HistoricoFenomenosDTO();
+            dto.setIntensidad(row[0]);
+            dto.setamio(Integer.parseInt(row[1]));
+            dto.setCantidad(Integer.parseInt(row[2]));
+            dtos.add(dto);
+        }
+        return dtos;
     }
 }

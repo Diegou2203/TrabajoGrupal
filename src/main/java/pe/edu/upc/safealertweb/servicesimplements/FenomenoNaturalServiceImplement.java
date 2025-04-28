@@ -27,4 +27,14 @@ public class FenomenoNaturalServiceImplement implements IFenomenoNaturalService 
 
     @Override
     public void update(FenomenoNatural fn) {fnR.save(fn);}
+
+    @Override
+    public List<String[]> quantityFenomenoPorUbicacion() {
+        return fnR.quantityFenomenoPorUbicacion();
+    }
+
+    @Override
+    public List<String[]> findHistoricoFenomenosPorIntensidad() {
+        return fnR.findHistoricoFenomenosPorIntensidad();
+    }
 }

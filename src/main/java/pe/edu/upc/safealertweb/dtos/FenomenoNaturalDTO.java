@@ -1,13 +1,17 @@
 package pe.edu.upc.safealertweb.dtos;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import pe.edu.upc.safealertweb.entities.Ubicacion;
+
+import java.time.LocalDate;
 
 public class FenomenoNaturalDTO {
     private int idFenomenoNatural;
     private String nombre_fenomeno;
-    private String descripcion;
-    private String categoria;
-    private String nivel_peligrosidad;
+    private String intensidad;
+    private LocalDate fecha_fenomeno;
     private boolean activo;
     private Ubicacion ubicacion;
 
@@ -27,28 +31,20 @@ public class FenomenoNaturalDTO {
         this.nombre_fenomeno = nombre_fenomeno;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getIntensidad() {
+        return intensidad;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setIntensidad(String intensidad) {
+        this.intensidad = intensidad;
     }
 
-    public String getCategoria() {
-        return categoria;
+    public LocalDate getFecha_fenomeno() {
+        return fecha_fenomeno;
     }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getNivel_peligrosidad() {
-        return nivel_peligrosidad;
-    }
-
-    public void setNivel_peligrosidad(String nivel_peligrosidad) {
-        this.nivel_peligrosidad = nivel_peligrosidad;
+    public void setFecha_fenomeno(LocalDate fecha_fenomeno) {
+        this.fecha_fenomeno = fecha_fenomeno;
     }
 
     public boolean isActivo() {

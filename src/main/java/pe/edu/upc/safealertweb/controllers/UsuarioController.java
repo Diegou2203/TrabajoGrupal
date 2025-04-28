@@ -64,7 +64,7 @@ public class UsuarioController {
 
         for (String[] row : data) {
             UsuariosAltoRiesgoDTO dto = new UsuariosAltoRiesgoDTO();
-            dto.setNombre(row[0]);
+            dto.setUsername(row[0]);
             dto.setTelefono(row[1]);
             dto.setCorreo(row[2]);
             dto.setCiudad(row[3]);

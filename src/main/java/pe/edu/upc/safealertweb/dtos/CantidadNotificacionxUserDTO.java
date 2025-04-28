@@ -12,7 +12,7 @@ public class CantidadNotificacionxUserDTO {
         return username;
     }
 
-    public void setUsername(String nombre) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

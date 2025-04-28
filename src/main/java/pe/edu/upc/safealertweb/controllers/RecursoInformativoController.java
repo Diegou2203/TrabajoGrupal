@@ -59,7 +59,7 @@ public class RecursoInformativoController {
         for (String[] columna : filaLista) {
             CantidadRecursoxUsuarioDTO dto = new CantidadRecursoxUsuarioDTO();
             dto.setApellido(columna[0]);
-            dto.setNombre(columna[1]);
+            dto.setUsername(columna[1]);
             dto.setCantidad(Integer.parseInt(columna[2]));
             dtoLista.add(dto);
         }

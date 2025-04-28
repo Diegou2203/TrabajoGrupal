@@ -4,16 +4,16 @@ import jakarta.persistence.Column;
 
 public class CantidadNotificacionxUserDTO {
 
-    private String nombre;
+    private String username;
     private String apellido;
     private int cantidad;
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String nombre) {
+        this.username = username;
     }
 
     public String getApellido() {

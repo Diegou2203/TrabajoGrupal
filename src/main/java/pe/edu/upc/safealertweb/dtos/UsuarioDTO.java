@@ -58,11 +58,11 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public boolean getActivo() {
+    public boolean getEnabled() {
         return enabled;
     }
 
-    public void setActivo(boolean enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -90,7 +90,7 @@ public class UsuarioDTO {
         this.fecha_Registro = fecha_Registro;
     }
 
-    public boolean getCompartir_ubicacion_temporal() {
+    public boolean isCompartir_ubicacion_temporal() {
         return compartir_ubicacion_temporal;
     }
 

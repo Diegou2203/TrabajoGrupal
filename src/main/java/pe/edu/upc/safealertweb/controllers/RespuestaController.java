@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.CantidadRespuestaxComentarioDTO;
 import pe.edu.upc.safealertweb.dtos.ComentarioConsultaDTO;
@@ -32,6 +33,7 @@ public class RespuestaController {
 
     //POST
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody RespuestaDTO reDto) {
         ModelMapper modelMapper = new ModelMapper();
         Respuesta re = modelMapper.map(reDto, Respuesta.class);
@@ -48,6 +50,7 @@ public class RespuestaController {
 
     //DELETE
     @DeleteMapping("/{idRespuesta}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("idRespuesta") int idRespuesta) {
         reS.delete(idRespuesta);
     }
@@ -55,6 +58,7 @@ public class RespuestaController {
 
     //PUT
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody RespuestaDTO reDTO) {
         ModelMapper m = new ModelMapper();
         Respuesta re = m.map(reDTO, Respuesta.class);
@@ -62,6 +66,7 @@ public class RespuestaController {
     }
 
     @GetMapping("/CantidadRespuestasPorComentario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadRespuestaxComentarioDTO> cantidadRespuestas() {
         List<CantidadRespuestaxComentarioDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista = reS.cantidadRespuestasPorComentario();

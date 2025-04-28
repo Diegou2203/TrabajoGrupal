@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.SimulacroDTO;
 import pe.edu.upc.safealertweb.entities.Simulacro;
@@ -28,6 +29,7 @@ public class SimulacroController {
 
     //POST
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody SimulacroDTO sDTO){
         ModelMapper modelMapper = new ModelMapper();
         Simulacro s= modelMapper.map(sDTO, Simulacro.class);
@@ -44,6 +46,7 @@ public class SimulacroController {
 
     //DELETE
     @DeleteMapping("/{idSimulacro}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("idSimulacro") int idSimulacro) {
         sS.delete(idSimulacro);
     }
@@ -51,6 +54,7 @@ public class SimulacroController {
 
     //PUT
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody SimulacroDTO sDTO) {
         ModelMapper m = new ModelMapper();
         Simulacro s = m.map(sDTO, Simulacro.class);

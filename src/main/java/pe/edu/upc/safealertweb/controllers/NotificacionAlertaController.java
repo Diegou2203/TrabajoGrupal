@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.CantidadNotificacionxUserDTO;
 import pe.edu.upc.safealertweb.dtos.NotificacionAlertaDTO;
@@ -53,6 +54,7 @@ public class NotificacionAlertaController {
     }
 
     @GetMapping("/CantidadNotificacionesRevisadasPorUsuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadNotificacionxUserDTO> cantidadNotificaciones(){
         List<CantidadNotificacionxUserDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=naS.quantityNotificacionPorUser();

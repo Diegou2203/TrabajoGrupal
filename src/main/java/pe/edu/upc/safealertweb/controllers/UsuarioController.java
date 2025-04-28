@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.UsuarioDTO;
 import pe.edu.upc.safealertweb.dtos.UsuariosAltoRiesgoDTO;
@@ -58,6 +59,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/ListaUsuariosPorZonasAltoRiesgo")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuariosAltoRiesgoDTO> ListarUsuariosEnZonasDeAltoRiesgo() {
         List<String[]> data = uS.findUsuariosEnZonasDeAltoRiesgo();
         List<UsuariosAltoRiesgoDTO> dtos = new ArrayList<>();

@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.CantidadUbicacionxFDTO;
 import pe.edu.upc.safealertweb.dtos.FenomenoNaturalDTO;
@@ -73,6 +74,7 @@ public class FenomenoNaturalController {
     }
 
     @GetMapping("/HistoricoPorIntensidad")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<HistoricoFenomenosDTO> obtenerHistoricoPorIntensidad() {
         List<String[]> data = fnS.findHistoricoFenomenosPorIntensidad();
         List<HistoricoFenomenosDTO> dtos = new ArrayList<>();

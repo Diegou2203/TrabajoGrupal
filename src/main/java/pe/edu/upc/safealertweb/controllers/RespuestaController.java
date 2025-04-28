@@ -3,13 +3,15 @@ package pe.edu.upc.safealertweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.safealertweb.dtos.ComentarioConsultaDTO;
+import pe.edu.upc.safealertweb.dtos.ContarRespuestaDTO;
 import pe.edu.upc.safealertweb.dtos.RespuestaDTO;
 import pe.edu.upc.safealertweb.entities.ComentarioConsulta;
 import pe.edu.upc.safealertweb.entities.Respuesta;
 import pe.edu.upc.safealertweb.servicesinterfaces.IComentarioConsultaService;
 import pe.edu.upc.safealertweb.servicesinterfaces.IRespuestaService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,13 @@ public class RespuestaController {
             return modelMapper.map(x, RespuestaDTO.class);
         }).collect(Collectors.toList());
     }
-
+    @GetMapping("/busquedas")
+    public List<RespuestaDTO> buscar(@RequestParam String t) {
+        return reS.buscarportitulo(t).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, RespuestaDTO.class);
+        }).collect(Collectors.toList());
+    }
     //POST
     @PostMapping
     public void insertar(@RequestBody RespuestaDTO reDto){
@@ -58,4 +66,19 @@ public class RespuestaController {
         Respuesta re = m.map(reDTO, Respuesta.class);
         reS.update(re);
     }
+
+    @GetMapping("/cantidades")
+    public List<ContarRespuestaDTO> cantidadPorrespuesta() {
+        List<ContarRespuestaDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = reS.contarrespuesta();
+        for (String[] columna : filaLista) {
+            ContarRespuestaDTO dto = new ContarRespuestaDTO();
+            dto.setIdRol(Integer.parseInt(columna[0]));
+            dto.setContarrespuesta(Integer.parseInt(columna[1]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
+
 }

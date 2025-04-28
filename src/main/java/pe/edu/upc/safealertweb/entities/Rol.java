@@ -41,7 +41,6 @@ public class Rol {
         this.rol = rol;
     }
 
-    @JsonIgnore
     public Usuario getUsuario() {
         return usuario;
     }

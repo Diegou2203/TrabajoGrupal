@@ -1,5 +1,6 @@
 package pe.edu.upc.safealertweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -43,7 +44,7 @@ public class Usuario {
     private Ubicacion ubicacion;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "idUsuario")
     private List<Rol> roles;
 
     public Usuario() { }
@@ -151,6 +152,7 @@ public class Usuario {
         this.ubicacion = ubicacion;
     }
 
+    @JsonIgnore
     public List<Rol> getRoles() {
         return roles;
     }

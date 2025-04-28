@@ -14,4 +14,6 @@ public interface IRecursoInformativoService {
     public void delete(int idRecursoInformativo);
 
     public void update(RecursoInformativo ri);
+
+    public List<String[]> cantidadRecursosPorUsuario();
 }

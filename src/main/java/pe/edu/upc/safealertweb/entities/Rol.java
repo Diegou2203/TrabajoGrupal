@@ -9,20 +9,42 @@ public class Rol {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idRol;
 
-    @Column(name="es_admin", nullable=false)
-    private boolean es_admin;
+    @Column(name="rol", nullable=false, length=50)
+    private String rol;
+
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", nullable = false)
+    private Usuario usuario;
+
     public Rol() {}
 
-    public Rol(int idRol, boolean es_admin) {
+    public Rol(int idRol, String rol, Usuario usuario) {
         this.idRol = idRol;
-        this.es_admin = es_admin;
+        this.rol = rol;
+        this.usuario = usuario;
     }
 
-    public int getIdRol() { return idRol; }
+    public int getIdRol() {
+        return idRol;
+    }
 
-    public void setIdRol(int idRol) { this.idRol = idRol; }
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
 
-    public boolean isEsAdmin() { return es_admin; }
+    public String getRol() {
+        return rol;
+    }
 
-    public void setEsAdmin(boolean es_admin) { this.es_admin = es_admin; }
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

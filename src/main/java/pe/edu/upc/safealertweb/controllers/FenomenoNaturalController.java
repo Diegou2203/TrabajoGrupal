@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.CantidadUbicacionxFDTO;
 import pe.edu.upc.safealertweb.dtos.FenomenoNaturalDTO;
+import pe.edu.upc.safealertweb.dtos.HistoricoFenomenosDTO;
 import pe.edu.upc.safealertweb.entities.FenomenoNatural;
 import pe.edu.upc.safealertweb.servicesinterfaces.IFenomenoNaturalService;
 
@@ -58,7 +59,7 @@ public class FenomenoNaturalController {
         fnS.update(fn);
     }
 
-    @GetMapping("/cantidad")
+    @GetMapping("/CantidadFenomenosNaturalesPorUbicacion")
     public List<CantidadUbicacionxFDTO> cantidadFenomeno(){
         List<CantidadUbicacionxFDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=fnS.quantityFenomenoPorUbicacion();
@@ -71,4 +72,18 @@ public class FenomenoNaturalController {
         return dtoLista;
     }
 
+    @GetMapping("/HistoricoPorIntensidad")
+    public List<HistoricoFenomenosDTO> obtenerHistoricoPorIntensidad() {
+        List<String[]> data = fnS.findHistoricoFenomenosPorIntensidad();
+        List<HistoricoFenomenosDTO> dtos = new ArrayList<>();
+
+        for (String[] row : data) {
+            HistoricoFenomenosDTO dto = new HistoricoFenomenosDTO();
+            dto.setIntensidad(row[0]);
+            dto.setamio(Integer.parseInt(row[1]));
+            dto.setCantidad(Integer.parseInt(row[2]));
+            dtos.add(dto);
+        }
+        return dtos;
+    }
 }

@@ -1,15 +1,35 @@
 package pe.edu.upc.safealertweb.dtos;
 
+import jakarta.persistence.*;
+import pe.edu.upc.safealertweb.entities.Usuario;
+
 public class RolDTO {
 
     private int idRol;
-    private boolean es_admin;
+    private String rol;
+    private Usuario usuario;
 
-    public int getIdRol() { return idRol; }
+    public int getIdRol() {
+        return idRol;
+    }
 
-    public void setIdRol(int idRol) { this.idRol = idRol; }
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
+    }
 
-    public boolean isEsAdmin() { return es_admin; }
+    public String getRol() {
+        return rol;
+    }
 
-    public void setEsAdmin(boolean es_admin) { this.es_admin = es_admin; }
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

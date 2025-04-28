@@ -3,10 +3,12 @@ package pe.edu.upc.safealertweb.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.safealertweb.dtos.CantidadRecursoxUsuarioDTO;
 import pe.edu.upc.safealertweb.dtos.RecursoInformativoDTO;
 import pe.edu.upc.safealertweb.entities.RecursoInformativo;
 import pe.edu.upc.safealertweb.servicesinterfaces.IRecursoInformativoService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,5 +50,19 @@ public class RecursoInformativoController {
         ModelMapper modelMapper = new ModelMapper();
         RecursoInformativo ri = modelMapper.map(riDTO, RecursoInformativo.class);
         riS.update(ri);
+    }
+
+    @GetMapping("/CantidadRecursosPorUsuario")
+    public List<CantidadRecursoxUsuarioDTO> cantidadRecursos() {
+        List<CantidadRecursoxUsuarioDTO> dtoLista = new ArrayList<>();
+        List<String[]> filaLista = riS.cantidadRecursosPorUsuario();
+        for (String[] columna : filaLista) {
+            CantidadRecursoxUsuarioDTO dto = new CantidadRecursoxUsuarioDTO();
+            dto.setApellido(columna[0]);
+            dto.setNombre(columna[1]);
+            dto.setCantidad(Integer.parseInt(columna[2]));
+            dtoLista.add(dto);
+        }
+        return dtoLista;
     }
 }

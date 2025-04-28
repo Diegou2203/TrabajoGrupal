@@ -15,4 +15,5 @@ public interface IFenomenoNaturalService {
     //queries
     public List<String[]> quantityFenomenoPorUbicacion();
 
+    public List<String[]> findHistoricoFenomenosPorIntensidad();
 }

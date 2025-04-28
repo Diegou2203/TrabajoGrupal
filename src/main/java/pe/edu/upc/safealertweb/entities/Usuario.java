@@ -3,8 +3,9 @@ package pe.edu.upc.safealertweb.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
-@SuppressWarnings("JpaAttributeTypeInspection")
+
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
@@ -13,8 +14,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
-    @Column(name = "nombre", nullable = false, length = 40)
-    private String nombre;
+    @Column(name = "username", nullable = false, length = 40)
+    private String username;
 
     @Column(name = "apellido", nullable = false, length = 40)
     private String apellido;
@@ -22,8 +23,10 @@ public class Usuario {
     @Column(name = "correo", nullable = false, length = 60)
     private String correo;
 
-    @Column(name = "contrasenia", nullable = false, length = 40)
-    private String contrasenia;
+    @Column(name = "password", nullable = false, length = 200)
+    private String password;
+
+    private boolean activo;
 
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
@@ -34,74 +37,126 @@ public class Usuario {
     @Column(name = "fecha_Registro", nullable = false)
     private LocalDate fecha_Registro;
 
-    @Column(name = "compartir_ubicacion_temporal", nullable = false)
     private boolean compartir_ubicacion_temporal;
 
     @ManyToOne
     @JoinColumn(name="idUbicacion")
     private Ubicacion ubicacion;
 
-    @ManyToOne
-    @JoinColumn(name = "idRol")
-    private Rol rol;
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Rol> roles;
 
     public Usuario() { }
 
-    public Usuario(int idUsuario, String nombre, String apellido, String correo, String contrasenia, String telefono, LocalDate fecha_Nacimiento, LocalDate fecha_Registro, boolean compartir_ubicacion_temporal, Ubicacion ubicacion, Rol rol) {
+    public Usuario(int idUsuario, String username, String apellido, String correo, String password, boolean activo, String telefono, LocalDate fecha_Nacimiento, LocalDate fecha_Registro, boolean compartir_ubicacion_temporal, Ubicacion ubicacion, List<Rol> rol) {
         this.idUsuario = idUsuario;
-        this.nombre = nombre;
+        this.username = username;
         this.apellido = apellido;
         this.correo = correo;
-        this.contrasenia = contrasenia;
+        this.password = password;
+        this.activo = activo;
         this.telefono = telefono;
         this.fecha_Nacimiento = fecha_Nacimiento;
         this.fecha_Registro = fecha_Registro;
         this.compartir_ubicacion_temporal = compartir_ubicacion_temporal;
         this.ubicacion = ubicacion;
-        this.rol = rol;
+        this.roles = rol;
     }
-    public int getIdUsuario() { return idUsuario; }
 
-    public void setIdUsuario(int idUsuario) { this.idUsuario = idUsuario; }
+    public int getIdUsuario() {
+        return idUsuario;
+    }
 
-    public String getNombre() { return nombre; }
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getApellido() { return apellido; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public void setApellido(String apellido) { this.apellido = apellido; }
+    public String getApellido() {
+        return apellido;
+    }
 
-    public String getCorreo() { return correo; }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
 
-    public void setCorreo(String correo) { this.correo = correo; }
+    public String getCorreo() {
+        return correo;
+    }
 
-    public String getContrasenia() { return contrasenia; }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 
-    public void setContrasenia(String contrasenia) { this.contrasenia = contrasenia; }
+    public String getPassword() {
+        return password;
+    }
 
-    public String getTelefono() { return telefono; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public void setTelefono(String telefono) {this.telefono = telefono;}
+    public boolean isActivo() {
+        return activo;
+    }
 
-    public LocalDate getFecha_Nacimiento() { return fecha_Nacimiento; }
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
-    public void setFecha_Nacimiento(LocalDate fecha_Nacimiento) {this.fecha_Nacimiento = fecha_Nacimiento; }
+    public String getTelefono() {
+        return telefono;
+    }
 
-    public LocalDate getFecha_Registro() { return fecha_Registro; }
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
-    public void setFecha_Registro(LocalDate fecha_Registro) { this.fecha_Registro = fecha_Registro; }
+    public LocalDate getFecha_Nacimiento() {
+        return fecha_Nacimiento;
+    }
 
-    public boolean getCompartir_ubicacion_temporal() { return compartir_ubicacion_temporal; }
+    public void setFecha_Nacimiento(LocalDate fecha_Nacimiento) {
+        this.fecha_Nacimiento = fecha_Nacimiento;
+    }
 
-    public void setCompartir_ubicacion_temporal(boolean compartir_ubicacion_temporal) {this.compartir_ubicacion_temporal = compartir_ubicacion_temporal; }
+    public LocalDate getFecha_Registro() {
+        return fecha_Registro;
+    }
 
-    public Ubicacion getUbicacion() { return ubicacion; }
+    public void setFecha_Registro(LocalDate fecha_Registro) {
+        this.fecha_Registro = fecha_Registro;
+    }
 
-    public void setUbicacion (Ubicacion ubicacion) { this.ubicacion = ubicacion; }
+    public boolean isCompartir_ubicacion_temporal() {
+        return compartir_ubicacion_temporal;
+    }
 
-    public Rol getRol() { return rol; }
+    public void setCompartir_ubicacion_temporal(boolean compartir_ubicacion_temporal) {
+        this.compartir_ubicacion_temporal = compartir_ubicacion_temporal;
+    }
 
-    public void setRol (Rol rol) { this.rol = rol; }
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
 
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public List<Rol> getRol() {
+        return roles;
+    }
+
+    public void setRol(List<Rol> rol) {
+        this.roles = rol;
+    }
 }

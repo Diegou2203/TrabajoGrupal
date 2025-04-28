@@ -52,7 +52,7 @@ public class NotificacionAlertaController {
         naS.update(na);
     }
 
-    @GetMapping("/cantidad")
+    @GetMapping("/CantidadNotificacionesRevisadasPorUsuario")
     public List<CantidadNotificacionxUserDTO> cantidadNotificaciones(){
         List<CantidadNotificacionxUserDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=naS.quantityNotificacionPorUser();

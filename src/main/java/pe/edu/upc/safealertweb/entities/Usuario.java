@@ -25,8 +25,7 @@ public class Usuario {
 
     @Column(name = "password", nullable = false, length = 200)
     private String password;
-
-    private boolean activo;
+    private boolean enabled;
 
     @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
@@ -43,25 +42,25 @@ public class Usuario {
     @JoinColumn(name="idUbicacion")
     private Ubicacion ubicacion;
 
-    @OneToMany
-    @JoinColumn(name = "idUsuario")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private List<Rol> roles;
 
     public Usuario() { }
 
-    public Usuario(int idUsuario, String username, String apellido, String correo, String password, boolean activo, String telefono, LocalDate fecha_Nacimiento, LocalDate fecha_Registro, boolean compartir_ubicacion_temporal, Ubicacion ubicacion, List<Rol> rol) {
+    public Usuario(int idUsuario, String username, String apellido, String correo, String password, boolean enabled, String telefono, LocalDate fecha_Nacimiento, LocalDate fecha_Registro, boolean compartir_ubicacion_temporal, Ubicacion ubicacion, List<Rol> roles) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.apellido = apellido;
         this.correo = correo;
         this.password = password;
-        this.activo = activo;
+        this.enabled = enabled;
         this.telefono = telefono;
         this.fecha_Nacimiento = fecha_Nacimiento;
         this.fecha_Registro = fecha_Registro;
         this.compartir_ubicacion_temporal = compartir_ubicacion_temporal;
         this.ubicacion = ubicacion;
-        this.roles = rol;
+        this.roles = roles;
     }
 
     public int getIdUsuario() {
@@ -104,12 +103,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean getEnabled() {
+        return enabled;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getTelefono() {
@@ -136,7 +135,7 @@ public class Usuario {
         this.fecha_Registro = fecha_Registro;
     }
 
-    public boolean isCompartir_ubicacion_temporal() {
+    public boolean getCompartir_ubicacion_temporal() {
         return compartir_ubicacion_temporal;
     }
 
@@ -152,11 +151,11 @@ public class Usuario {
         this.ubicacion = ubicacion;
     }
 
-    public List<Rol> getRol() {
+    public List<Rol> getRoles() {
         return roles;
     }
 
-    public void setRol(List<Rol> rol) {
-        this.roles = rol;
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }

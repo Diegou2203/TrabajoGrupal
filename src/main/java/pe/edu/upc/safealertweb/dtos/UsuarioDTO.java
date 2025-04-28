@@ -12,7 +12,7 @@ public class UsuarioDTO {
     private String apellido;
     private String correo;
     private String password;
-    private boolean activo;
+    private boolean enabled;
     private String telefono;
     private LocalDate fecha_Nacimiento;
     private LocalDate fecha_Registro;
@@ -58,12 +58,12 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean getActivo() {
+        return enabled;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setActivo(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getTelefono() {
@@ -90,7 +90,7 @@ public class UsuarioDTO {
         this.fecha_Registro = fecha_Registro;
     }
 
-    public boolean isCompartir_ubicacion_temporal() {
+    public boolean getCompartir_ubicacion_temporal() {
         return compartir_ubicacion_temporal;
     }
 

@@ -1,9 +1,10 @@
 package pe.edu.upc.safealertweb.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Rol")
+@Table(name="Rol", uniqueConstraints = {@UniqueConstraint(columnNames = {"idUsuario", "rol"})})
 public class Rol {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -40,6 +41,7 @@ public class Rol {
         this.rol = rol;
     }
 
+    @JsonIgnore
     public Usuario getUsuario() {
         return usuario;
     }

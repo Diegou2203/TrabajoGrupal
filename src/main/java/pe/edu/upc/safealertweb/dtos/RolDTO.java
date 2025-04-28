@@ -1,5 +1,6 @@
 package pe.edu.upc.safealertweb.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import pe.edu.upc.safealertweb.entities.Usuario;
 

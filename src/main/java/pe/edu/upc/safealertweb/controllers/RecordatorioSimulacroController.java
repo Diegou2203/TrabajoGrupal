@@ -49,7 +49,7 @@ public class RecordatorioSimulacroController {
 
     //PUT
     @PutMapping
-    public void modificarRecordatorioSimulacro(@RequestBody RecordatorioSimulacro fnDTO) {
+    public void modificarRecordatorioSimulacro(@RequestBody RecordatorioSimulacroDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         RecordatorioSimulacro rs = m.map(fnDTO, RecordatorioSimulacro.class);
         rsS.update(rs);

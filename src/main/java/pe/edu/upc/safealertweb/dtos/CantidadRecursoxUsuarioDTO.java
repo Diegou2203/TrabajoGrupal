@@ -2,7 +2,7 @@ package pe.edu.upc.safealertweb.dtos;
 
 public class CantidadRecursoxUsuarioDTO {
     private String apellido;
-    private String nombre;
+    private String username;
     private int cantidad;
 
     public String getApellido() {
@@ -13,12 +13,12 @@ public class CantidadRecursoxUsuarioDTO {
         this.apellido = apellido;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getCantidad() {

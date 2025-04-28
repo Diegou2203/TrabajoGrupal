@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +17,7 @@ public class Simulacro {
     private String titulo;
 
     @Column(name = "fecha_hora",nullable = false)
-    private LocalDateTime fecha_hora;
+    private LocalDate fecha_hora;
 
     @Column(name = "duracion_minutos",nullable = false)
     private int duracion_minutos;
@@ -34,7 +35,7 @@ public class Simulacro {
     public Simulacro() {
     }
 
-    public Simulacro(int idSimulacro, String titulo, LocalDateTime fecha_hora, int duracion_minutos, String tipo, boolean es_nacional) {
+    public Simulacro(int idSimulacro, String titulo, LocalDate fecha_hora, int duracion_minutos, String tipo, boolean es_nacional) {
         this.idSimulacro = idSimulacro;
         this.titulo = titulo;
         this.fecha_hora = fecha_hora;
@@ -59,11 +60,11 @@ public class Simulacro {
         this.titulo = titulo;
     }
 
-    public LocalDateTime getFecha_hora() {
+    public LocalDate getFecha_hora() {
         return fecha_hora;
     }
 
-    public void setFecha_hora(LocalDateTime fecha_hora) {
+    public void setFecha_hora(LocalDate fecha_hora) {
         this.fecha_hora = fecha_hora;
     }
 

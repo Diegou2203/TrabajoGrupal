@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.UsuarioDTO;
 import pe.edu.upc.safealertweb.dtos.UsuariosAltoRiesgoDTO;
@@ -51,20 +52,21 @@ public class UsuarioController {
 
     //PUT
     @PutMapping
-    public void modificarUsuario(@RequestBody Usuario fnDTO) {
+    public void modificarUsuario(@RequestBody UsuarioDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(fnDTO, Usuario.class);
         uS.update(u);
     }
 
     @GetMapping("/ListaUsuariosPorZonasAltoRiesgo")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuariosAltoRiesgoDTO> ListarUsuariosEnZonasDeAltoRiesgo() {
         List<String[]> data = uS.findUsuariosEnZonasDeAltoRiesgo();
         List<UsuariosAltoRiesgoDTO> dtos = new ArrayList<>();
 
         for (String[] row : data) {
             UsuariosAltoRiesgoDTO dto = new UsuariosAltoRiesgoDTO();
-            dto.setNombre(row[0]);
+            dto.setUsername(row[0]);
             dto.setTelefono(row[1]);
             dto.setCorreo(row[2]);
             dto.setCiudad(row[3]);

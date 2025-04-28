@@ -2,6 +2,7 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.CantidadNotificacionxUserDTO;
 import pe.edu.upc.safealertweb.dtos.NotificacionAlertaDTO;
@@ -46,19 +47,20 @@ public class NotificacionAlertaController {
     }
 
     @PutMapping
-    public void modificar(@RequestBody NotificacionAlerta naDTO) {
+    public void modificar(@RequestBody NotificacionAlertaDTO naDTO) {
         ModelMapper modelMapper = new ModelMapper();
         NotificacionAlerta na = modelMapper.map(naDTO, NotificacionAlerta.class);
         naS.update(na);
     }
 
     @GetMapping("/CantidadNotificacionesRevisadasPorUsuario")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadNotificacionxUserDTO> cantidadNotificaciones(){
         List<CantidadNotificacionxUserDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=naS.quantityNotificacionPorUser();
         for(String[] columna:filaLista){
             CantidadNotificacionxUserDTO dto = new CantidadNotificacionxUserDTO();
-            dto.setNombre(columna[0]);
+            dto.setUsername(columna[0]);
             dto.setApellido(columna[1]);
             dto.setCantidad(Integer.parseInt(columna[2]));
             dtoLista.add(dto);

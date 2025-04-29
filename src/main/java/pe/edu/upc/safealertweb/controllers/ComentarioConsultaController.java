@@ -60,7 +60,7 @@ public class ComentarioConsultaController {
         coS.update(co);
     }
 
-    @GetMapping("/cantidades")
+    @GetMapping("/CantidadesComentariosPorUsuario")
     public List<ContarComentarioDTO> cantidadPorcomentario() {
         List<ContarComentarioDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista = coS.contarcomentariousuario();

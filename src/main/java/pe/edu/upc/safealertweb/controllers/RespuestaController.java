@@ -33,7 +33,7 @@ public class RespuestaController {
             return modelMapper.map(x, RespuestaDTO.class);
         }).collect(Collectors.toList());
     }
-    @GetMapping("/busquedas")
+    @GetMapping("/BusquedasPorTitulo")
     public List<RespuestaDTO> buscar(@RequestParam String t) {
         return reS.buscarportitulo(t).stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -74,7 +74,7 @@ public class RespuestaController {
         reS.update(re);
     }
 
-    @GetMapping("/cantidades")
+    @GetMapping("/CantidadRespuestasPorAdmin")
     public List<ContarRespuestaDTO> cantidadPorrespuesta() {
         List<ContarRespuestaDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista = reS.contarrespuesta();
@@ -82,7 +82,11 @@ public class RespuestaController {
             ContarRespuestaDTO dto = new ContarRespuestaDTO();
             dto.setIdRol(Integer.parseInt(columna[0]));
             dto.setContarrespuesta(Integer.parseInt(columna[1]));
-          
+            dtoLista.add(dto);
+        }
+        return dtoLista;
+    }
+
     @GetMapping("/CantidadRespuestasPorComentario")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<CantidadRespuestaxComentarioDTO> cantidadRespuestas() {

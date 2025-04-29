@@ -29,8 +29,6 @@ public interface IRespuestaRepository extends JpaRepository<Respuesta, Integer> 
             "    r.id_rol",nativeQuery = true)
     public List<String[]> contarrespuesta();
 
-@Repository
-public interface IRespuestaRepository extends JpaRepository<Respuesta, Integer> {
     @Query(value = "SELECT cc.contenido, cc.estado, COUNT(id_respuesta)\n" +
             "FROM comentario_consulta cc\n" +
             "INNER JOIN respuesta r ON cc.id_comentario = r.id_comentario\n" +

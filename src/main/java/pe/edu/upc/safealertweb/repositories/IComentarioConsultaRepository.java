@@ -15,14 +15,14 @@ public interface IComentarioConsultaRepository extends JpaRepository<ComentarioC
 
 
     @Query(value = "SELECT \n" +
-            "    u.nombre, \n" +
+            "    u.username, \n" +
             "    COUNT(*) AS cantidad_comentarios\n" +
             "FROM \n" +
             "    Comentario_Consulta c\n" +
             "INNER JOIN \n" +
             "    Usuario u ON c.id_usuario = u.id_usuario\n" +
             "GROUP BY \n" +
-            "    u.nombre",nativeQuery = true)
+            "    u.username",nativeQuery = true)
     public List<String[]> contarcomentariousuario();
 
 }

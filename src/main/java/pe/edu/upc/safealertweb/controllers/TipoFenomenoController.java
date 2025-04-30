@@ -1,6 +1,7 @@
 package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.TipoFenomenoDTO;
 import pe.edu.upc.safealertweb.entities.TipoFenomeno;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @RequestMapping("tipofenomeno")
 public class TipoFenomenoController {
 
+    @Autowired
     private TipoFenomenoServiceImplement tS;
 
     @GetMapping("/VerTipoFenomeno")

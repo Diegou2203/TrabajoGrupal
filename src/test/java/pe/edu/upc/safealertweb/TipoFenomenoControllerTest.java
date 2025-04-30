@@ -16,9 +16,10 @@ import pe.edu.upc.safealertweb.servicesimplements.TipoFenomenoServiceImplement;
 import java.util.Arrays;
 import java.util.List;
 
-import static javax.management.Query.eq;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TipoFenomenoControllerTest  {
@@ -59,11 +60,66 @@ public class TipoFenomenoControllerTest  {
     void testListarTipoFenomeno() {
         when(tS.list()).thenReturn(Arrays.asList(tipoFenomeno));
 
-        List<TipoFenomenoDTO> resultado = tipoFenomenoController.listartipofenomeno();
+        List<TipoFenomenoDTO> result = tipoFenomenoController.listartipofenomeno();
 
-        assertNotNull(resultado);
-        assertEquals(1, resultado.size());
-        assertEquals("Agua que invade zonas costeras", resultado.get(0).getDescripcion());
+        assertEquals(1, result.size());
+        assertEquals(tipoFenomeno.getDescripcion(), result.get(0).getDescripcion());
+    }
+
+    @Test
+    void testInsertarTipoFenomeno() {
+        TipoFenomenoDTO dto = new TipoFenomenoDTO();
+        dto.setIdTipoFenomeno(2);
+        dto.setDescripcion("Deslizamiento");
+        dto.setFenomenoNatural(fenomenoNatural);
+
+        // Ejecutar
+        tipoFenomenoController.insertar(dto);
+
+        // Verificar
+        verify(tS).insert(any(TipoFenomeno.class));
+    }
+
+    @Test
+    void testListarIdTipoFenomeno() {
+
+        int id = 1;
+        TipoFenomeno tipoFenomeno = new TipoFenomeno();
+        tipoFenomeno.setIdTipoFenomeno(id);
+        tipoFenomeno.setDescripcion("Inundación");
+        tipoFenomeno.setFenomenoNatural(fenomenoNatural);
+
+        when(tS.listarId(id)).thenReturn(tipoFenomeno);
+
+        // Act
+        TipoFenomenoDTO result = tipoFenomenoController.listarId(id);
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(id, result.getIdTipoFenomeno());
+        assertEquals("Inundación", result.getDescripcion());
+    }
+
+
+    @Test
+    void testEliminar() {
+        tipoFenomenoController.eliminar(1);
+
+        verify(tS).delete(1);
+    }
+
+    @Test
+    void testModificarTipoFenomeno() {
+        TipoFenomenoDTO dto = new TipoFenomenoDTO();
+        dto.setIdTipoFenomeno(2);
+        dto.setDescripcion("Deslizamiento Modificado");
+        dto.setFenomenoNatural(fenomenoNatural);
+
+        // Ejecuta
+        tipoFenomenoController.modificar(dto);
+
+        // Verifica
+        verify(tS).update(any(TipoFenomeno.class));
     }
 
 }

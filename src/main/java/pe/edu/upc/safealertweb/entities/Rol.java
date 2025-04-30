@@ -3,9 +3,11 @@ package pe.edu.upc.safealertweb.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name="Rol", uniqueConstraints = {@UniqueConstraint(columnNames = {"idUsuario", "rol"})})
-public class Rol {
+@Table(name="Rol", uniqueConstraints = {@UniqueConstraint(columnNames = {"id_user", "rol"})})
+public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idRol;
@@ -14,13 +16,13 @@ public class Rol {
     private String rol;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", nullable = false)
+    @JoinColumn(name = "id_user", nullable = false)
     private Usuario usuario;
 
     public Rol() {}
 
-    public Rol(int idRol, String rol, Usuario usuario) {
-        this.idRol = idRol;
+    public Rol(int idUsuario, String rol, Usuario usuario) {
+        this.idRol = idUsuario;
         this.rol = rol;
         this.usuario = usuario;
     }

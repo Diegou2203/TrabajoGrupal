@@ -1,70 +1,22 @@
-package pe.edu.upc.safealertweb.entities;
+package pe.edu.upc.safealertweb.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import pe.edu.upc.safealertweb.entities.Rol;
+import pe.edu.upc.safealertweb.entities.Ubicacion;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-
-@Entity
-@Table(name = "Usuario")
-public class Usuario implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UsuarioDTOListar {
     private int idUsuario;
-
-    @Column(name = "username", nullable = false, length = 40)
     private String username;
-
-    @Column(name = "apellido", nullable = false, length = 40)
     private String apellido;
-
-    @Column(name = "correo", nullable = false, length = 60)
     private String correo;
-
-    @Column(name = "password", nullable = false, length = 200)
-    private String password;
-    private boolean enabled;
-
-    @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
-
-    @Column(name = "fecha_Nacimiento", nullable = false)
     private LocalDate fecha_Nacimiento;
-
-    @Column(name = "fecha_Registro", nullable = false)
     private LocalDate fecha_Registro;
     private boolean compartir_ubicacion_temporal;
-
-    @ManyToOne
-    @JoinColumn(name="idUbicacion")
     private Ubicacion ubicacion;
-
-    @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="id_user")
     private List<Rol> roles;
-
-    public Usuario() { }
-
-    public Usuario(int idUsuario, String username, String apellido, String correo, String password, boolean enabled, String telefono, LocalDate fecha_Nacimiento, LocalDate fecha_Registro, boolean compartir_ubicacion_temporal, Ubicacion ubicacion, List<Rol> roles) {
-
-        this.idUsuario = idUsuario;
-        this.username = username;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.password = password;
-        this.enabled = enabled;
-        this.telefono = telefono;
-        this.fecha_Nacimiento = fecha_Nacimiento;
-        this.fecha_Registro = fecha_Registro;
-        this.compartir_ubicacion_temporal = compartir_ubicacion_temporal;
-        this.ubicacion = ubicacion;
-        this.roles = roles;
-    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -96,22 +48,6 @@ public class Usuario implements Serializable {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getTelefono() {

@@ -15,7 +15,7 @@ public class TipoFenomenoController {
 
     private TipoFenomenoServiceImplement tS;
 
-    @GetMapping
+    @GetMapping("/VerTipoFenomeno")
     public List<TipoFenomenoDTO> listartipofenomeno() {
         return tS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -24,7 +24,7 @@ public class TipoFenomenoController {
     }
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarTipoFenomeno")
     public void insertar(@RequestBody TipoFenomenoDTO tfDTO){
         ModelMapper modelMapper = new ModelMapper();
         TipoFenomeno tf= modelMapper.map(tfDTO, TipoFenomeno.class);
@@ -46,7 +46,7 @@ public class TipoFenomenoController {
     }
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarTipoFenomeno")
     public void modificar(@RequestBody TipoFenomenoDTO tfDTO) {
         ModelMapper m = new ModelMapper();
         TipoFenomeno tf = m.map(tfDTO, TipoFenomeno.class);

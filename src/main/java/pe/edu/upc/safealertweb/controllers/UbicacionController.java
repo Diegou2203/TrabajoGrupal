@@ -19,7 +19,7 @@ public class UbicacionController {
 
 
     //GET TODA LA LISTA
-    @GetMapping
+    @GetMapping("/VerUbicacion")
     public List<UbicacionDTO> listarUbicaciones(){
         return uS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -29,7 +29,7 @@ public class UbicacionController {
 
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarUbicacion")
     public void insertar(@RequestBody UbicacionDTO UDto){
         ModelMapper modelMapper = new ModelMapper();
         Ubicacion u= modelMapper.map(UDto, Ubicacion.class);
@@ -52,7 +52,7 @@ public class UbicacionController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarUbicacion")
     public void modificar(@RequestBody UbicacionDTO uDTO) {
         ModelMapper m = new ModelMapper();
         Ubicacion u = m.map(uDTO, Ubicacion.class);

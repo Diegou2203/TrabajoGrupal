@@ -19,7 +19,7 @@ public class RecursoInformativoController {
     @Autowired
     private IRecursoInformativoService riS;
 
-    @GetMapping
+    @GetMapping("/VerRecurso")
     public List<RecursoInformativoDTO> listarRecursosInformativos() {
         return riS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -27,7 +27,7 @@ public class RecursoInformativoController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/InsertarRecurso")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody RecursoInformativoDTO riDTO) {
         ModelMapper modelMapper = new ModelMapper();
@@ -48,7 +48,7 @@ public class RecursoInformativoController {
         riS.delete(idRecursoInformativo);
     }
 
-    @PutMapping
+    @PutMapping("/ModificarRecurso")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody RecursoInformativoDTO riDTO) {
         ModelMapper modelMapper = new ModelMapper();

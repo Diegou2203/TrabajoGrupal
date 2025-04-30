@@ -19,7 +19,7 @@ public class NotificacionAlertaController {
     @Autowired
     private INotificacionAlertaService naS;
 
-    @GetMapping
+    @GetMapping("/VerNotificaciones")
     public List<NotificacionAlertaDTO> listarSimulacros() {
         return naS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -27,7 +27,7 @@ public class NotificacionAlertaController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/InsertarNotificaciones")
     public void insertar(@RequestBody NotificacionAlertaDTO naDTO) {
         ModelMapper modelMapper = new ModelMapper();
         NotificacionAlerta na = modelMapper.map(naDTO, NotificacionAlerta.class);
@@ -46,7 +46,7 @@ public class NotificacionAlertaController {
         naS.delete(idNotificacionAlerta);
     }
 
-    @PutMapping
+    @PutMapping("/ModificarNotificaciones")
     public void modificar(@RequestBody NotificacionAlertaDTO naDTO) {
         ModelMapper modelMapper = new ModelMapper();
         NotificacionAlerta na = modelMapper.map(naDTO, NotificacionAlerta.class);

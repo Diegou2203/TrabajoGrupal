@@ -16,7 +16,7 @@ public class RecordatorioSimulacroController {
     @Autowired
     private IRecordatorioSimulacroService rsS;
 
-    @GetMapping
+    @GetMapping ("/VerRecordatorio")
     public List<RecordatorioSimulacroDTO> listarRecordatorioSimulacro() {
         return rsS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -25,7 +25,7 @@ public class RecordatorioSimulacroController {
     }
 
 
-    @PostMapping
+    @PostMapping("/InsertarRecordatorio")
     public void insertarRecordatorioSimulacro(@RequestBody RecordatorioSimulacroDTO rsDto){
         ModelMapper modelMapper = new ModelMapper();
         RecordatorioSimulacro rs= modelMapper.map(rsDto, RecordatorioSimulacro.class);
@@ -48,7 +48,7 @@ public class RecordatorioSimulacroController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarRecordatorio")
     public void modificarRecordatorioSimulacro(@RequestBody RecordatorioSimulacroDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         RecordatorioSimulacro rs = m.map(fnDTO, RecordatorioSimulacro.class);

@@ -26,7 +26,7 @@ public class RespuestaController {
     private IRespuestaService reS;
 
     //GET TODA LA LISTA
-    @GetMapping
+    @GetMapping("/VerRespuesta")
     public List<RespuestaDTO> listarrespuesta() {
         return reS.list().stream().map(x -> {
             ModelMapper modelMapper = new ModelMapper();
@@ -41,7 +41,7 @@ public class RespuestaController {
         }).collect(Collectors.toList());
     }
     //POST
-    @PostMapping
+    @PostMapping("/InsertarRespuesta")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody RespuestaDTO reDto) {
         ModelMapper modelMapper = new ModelMapper();
@@ -66,7 +66,7 @@ public class RespuestaController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificiarRespuesta")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody RespuestaDTO reDTO) {
         ModelMapper m = new ModelMapper();

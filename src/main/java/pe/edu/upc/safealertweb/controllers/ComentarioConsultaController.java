@@ -20,7 +20,7 @@ public class ComentarioConsultaController {
     @Autowired
     private IComentarioConsultaService coS;
     //GET TODA LA LISTA
-    @GetMapping
+    @GetMapping("/VerComentarios")
     public List<ComentarioConsultaDTO> listarcomentario(){
         return coS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -29,7 +29,7 @@ public class ComentarioConsultaController {
     }
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarComentarios")
     public void insertar(@RequestBody ComentarioConsultaDTO coDto){
         ModelMapper modelMapper = new ModelMapper();
         ComentarioConsulta co= modelMapper.map(coDto, ComentarioConsulta.class);
@@ -53,7 +53,7 @@ public class ComentarioConsultaController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarComentarios")
     public void modificar(@RequestBody ComentarioConsultaDTO coDTO) {
         ModelMapper m = new ModelMapper();
         ComentarioConsulta co = m.map(coDTO, ComentarioConsulta.class);

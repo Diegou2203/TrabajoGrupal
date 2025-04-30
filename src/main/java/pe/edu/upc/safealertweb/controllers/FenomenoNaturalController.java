@@ -20,7 +20,7 @@ public class FenomenoNaturalController {
     @Autowired
     private IFenomenoNaturalService fnS;
     //GET TODA LA LISTA
-    @GetMapping
+    @GetMapping("/VerFenomeno")
     public List<FenomenoNaturalDTO> listarUbicaciones(){
         return fnS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -29,7 +29,7 @@ public class FenomenoNaturalController {
     }
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarFenomeno")
     public void insertar(@RequestBody FenomenoNaturalDTO fNDto){
         ModelMapper modelMapper = new ModelMapper();
         FenomenoNatural fn= modelMapper.map(fNDto, FenomenoNatural.class);
@@ -53,7 +53,7 @@ public class FenomenoNaturalController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarFenomeno")
     public void modificar(@RequestBody FenomenoNaturalDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         FenomenoNatural fn = m.map(fnDTO, FenomenoNatural.class);

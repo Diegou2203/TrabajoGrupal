@@ -18,7 +18,7 @@ public class RolController {
     private IRolService rS;
 
 
-    @GetMapping
+    @GetMapping("/VerRoles")
     public List<RolDTO> listarRol() {
 
         return rS.list().stream().map(x->{
@@ -28,7 +28,7 @@ public class RolController {
     }
 
 
-    @PostMapping
+    @PostMapping("/InsertarRoles")
     public void insertarRol(@RequestBody RolDTO RDto) {
         ModelMapper modelMapper = new ModelMapper();
         Rol r = modelMapper.map(RDto, Rol.class);
@@ -44,11 +44,11 @@ public class RolController {
     }
 
 
-    @DeleteMapping("/{idRol}")
+    @DeleteMapping("/{eliminaridRol}")
     public void eliminarRol(@PathVariable ("idRol") int idRol) {rS.delete(idRol);}
 
 
-    @PutMapping
+    @PutMapping("/ModifiRol")
     public void modificarRol(@RequestBody RolDTO RDto) {
         ModelMapper m = new ModelMapper();
         Rol r = m.map(RDto, Rol.class);

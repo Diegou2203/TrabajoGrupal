@@ -19,7 +19,7 @@ public class SimulacroController {
     private ISimulacroService sS;
 
     //GET TODA LA LISTA
-    @GetMapping
+    @GetMapping("/VerSimulacro")
     public List<SimulacroDTO> listarSimulacros(){
         return sS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -28,7 +28,7 @@ public class SimulacroController {
     }
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarSimulacro")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void insertar(@RequestBody SimulacroDTO sDTO){
         ModelMapper modelMapper = new ModelMapper();
@@ -53,7 +53,7 @@ public class SimulacroController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarSimulacro")
     @PreAuthorize("hasAuthority('ADMIN')")
     public void modificar(@RequestBody SimulacroDTO sDTO) {
         ModelMapper m = new ModelMapper();

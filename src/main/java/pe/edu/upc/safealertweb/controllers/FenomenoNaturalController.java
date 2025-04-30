@@ -22,7 +22,7 @@ public class FenomenoNaturalController {
     @Autowired
     private IFenomenoNaturalService fnS;
     //GET TODA LA LISTA
-    @GetMapping
+    @GetMapping("/VerFenomeno")
     public List<FenomenoNaturalDTO> listarUbicaciones(){
         log.info("Solicitud GET para obtener fenomenos naturales");
         return fnS.list().stream().map(x->{
@@ -32,7 +32,7 @@ public class FenomenoNaturalController {
     }
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarFenomeno")
     public void insertar(@RequestBody FenomenoNaturalDTO fNDto){
         log.info("Solicitud POST para insertar fenomeno natural: "+fNDto.getNombre_fenomeno());
         ModelMapper modelMapper = new ModelMapper();
@@ -59,7 +59,7 @@ public class FenomenoNaturalController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarFenomeno")
     public void modificar(@RequestBody FenomenoNaturalDTO fnDTO) {
         log.info("Solicitud PUT del fenomeno natural: " + fnDTO.getIdFenomenoNatural());
         ModelMapper m = new ModelMapper();

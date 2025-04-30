@@ -1,6 +1,7 @@
 package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.TipoFenomenoDTO;
 import pe.edu.upc.safealertweb.entities.TipoFenomeno;
@@ -13,9 +14,10 @@ import java.util.stream.Collectors;
 @RequestMapping("tipofenomeno")
 public class TipoFenomenoController {
 
+    @Autowired
     private TipoFenomenoServiceImplement tS;
 
-    @GetMapping
+    @GetMapping("/VerTipoFenomeno")
     public List<TipoFenomenoDTO> listartipofenomeno() {
         return tS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -24,7 +26,7 @@ public class TipoFenomenoController {
     }
 
     //POST
-    @PostMapping
+    @PostMapping("/InsertarTipoFenomeno")
     public void insertar(@RequestBody TipoFenomenoDTO tfDTO){
         ModelMapper modelMapper = new ModelMapper();
         TipoFenomeno tf= modelMapper.map(tfDTO, TipoFenomeno.class);
@@ -46,7 +48,7 @@ public class TipoFenomenoController {
     }
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarTipoFenomeno")
     public void modificar(@RequestBody TipoFenomenoDTO tfDTO) {
         ModelMapper m = new ModelMapper();
         TipoFenomeno tf = m.map(tfDTO, TipoFenomeno.class);

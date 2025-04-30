@@ -17,7 +17,7 @@ public class SugerenciaPreventivaController {
     @Autowired
     private ISugerenciaPreventivaService spS;
 
-    @GetMapping
+    @GetMapping("/VerSugerencias")
     public List<SugerenciaPreventivaDTO> listarSugerenciapreventiva(){
         return spS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
@@ -25,7 +25,7 @@ public class SugerenciaPreventivaController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/InsertarSugerencias")
     public void insertarSugerenciaPreventiva(@RequestBody SugerenciaPreventivaDTO spDto){
         ModelMapper modelMapper = new ModelMapper();
         SugerenciaPreventiva sp= modelMapper.map(spDto, SugerenciaPreventiva.class);
@@ -46,7 +46,7 @@ public class SugerenciaPreventivaController {
     }
 
 
-    @PutMapping
+    @PutMapping("/ModificarSuerencias")
     public void modificarSugerenciaPreventiva(@RequestBody SugerenciaPreventivaDTO spDTO) {
         ModelMapper m = new ModelMapper();
         SugerenciaPreventiva sp = m.map(spDTO, SugerenciaPreventiva.class);

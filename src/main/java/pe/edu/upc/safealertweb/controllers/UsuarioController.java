@@ -19,6 +19,8 @@ public class UsuarioController {
 
     @Autowired
     private IUsuarioService uS;
+    @GetMapping("/VerUsuario")
+    public List<UsuarioDTO> listarUsuario(){
 
     @GetMapping
     public List<UsuarioDTOListar> listarUsuario(){
@@ -28,7 +30,7 @@ public class UsuarioController {
         }).collect(Collectors.toList());
     }
 
-    @PostMapping
+    @PostMapping("/InsertarUsuario")
     public void insertarUsuario(@RequestBody UsuarioDTO fNDto){
         ModelMapper modelMapper = new ModelMapper();
         Usuario fn= modelMapper.map(fNDto, Usuario.class);
@@ -51,7 +53,7 @@ public class UsuarioController {
 
 
     //PUT
-    @PutMapping
+    @PutMapping("/ModificarUsuario")
     public void modificarUsuario(@RequestBody UsuarioDTO fnDTO) {
         ModelMapper m = new ModelMapper();
         Usuario u = m.map(fnDTO, Usuario.class);

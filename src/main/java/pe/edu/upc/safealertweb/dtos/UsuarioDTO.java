@@ -1,10 +1,11 @@
 package pe.edu.upc.safealertweb.dtos;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 import pe.edu.upc.safealertweb.entities.Rol;
 import pe.edu.upc.safealertweb.entities.Ubicacion;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class UsuarioDTO {
     private int idUsuario;
@@ -17,6 +18,8 @@ public class UsuarioDTO {
     private LocalDate fecha_Nacimiento;
     private LocalDate fecha_Registro;
     private boolean compartir_ubicacion_temporal;
+    private Ubicacion ubicacion;
+    private List<Rol> roles;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -58,7 +61,7 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public boolean getEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
@@ -96,5 +99,21 @@ public class UsuarioDTO {
 
     public void setCompartir_ubicacion_temporal(boolean compartir_ubicacion_temporal) {
         this.compartir_ubicacion_temporal = compartir_ubicacion_temporal;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 }

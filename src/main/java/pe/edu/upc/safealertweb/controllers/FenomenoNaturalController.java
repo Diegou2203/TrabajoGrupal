@@ -1,5 +1,6 @@
 package pe.edu.upc.safealertweb.controllers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,12 +17,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("fenomeno")
+@Slf4j
 public class FenomenoNaturalController {
     @Autowired
     private IFenomenoNaturalService fnS;
     //GET TODA LA LISTA
     @GetMapping("/VerFenomeno")
     public List<FenomenoNaturalDTO> listarUbicaciones(){
+        log.info("Solicitud GET para obtener fenomenos naturales");
         return fnS.list().stream().map(x->{
             ModelMapper modelMapper = new ModelMapper();
             return modelMapper.map(x, FenomenoNaturalDTO.class);
@@ -31,6 +34,7 @@ public class FenomenoNaturalController {
     //POST
     @PostMapping("/InsertarFenomeno")
     public void insertar(@RequestBody FenomenoNaturalDTO fNDto){
+        log.info("Solicitud POST para insertar fenomeno natural: "+fNDto.getNombre_fenomeno());
         ModelMapper modelMapper = new ModelMapper();
         FenomenoNatural fn= modelMapper.map(fNDto, FenomenoNatural.class);
         fnS.insert(fn);
@@ -39,6 +43,7 @@ public class FenomenoNaturalController {
     //GET POR ID
     @GetMapping("/{idFenomenoNatural}")
     public FenomenoNaturalDTO listarId(@PathVariable("idFenomenoNatural") int idFenomenoNatural) {
+        log.info("Solicitud GET para poder obtener el fenomeno natural: "+ idFenomenoNatural);
         ModelMapper m = new ModelMapper();
         FenomenoNaturalDTO fnDTO = m.map(fnS.listarId(idFenomenoNatural), FenomenoNaturalDTO.class);
         return fnDTO;
@@ -47,6 +52,7 @@ public class FenomenoNaturalController {
     //DELETE
     @DeleteMapping("/{idFenomenoNatural}")
     public void eliminar(@PathVariable("idFenomenoNatural") int idFenomenoNatural) {
+        log.warn("Solicitud DELETE del fenomeno natural: "+idFenomenoNatural);
         fnS.delete(idFenomenoNatural);
     }
 
@@ -55,6 +61,7 @@ public class FenomenoNaturalController {
     //PUT
     @PutMapping("/ModificarFenomeno")
     public void modificar(@RequestBody FenomenoNaturalDTO fnDTO) {
+        log.info("Solicitud PUT del fenomeno natural: " + fnDTO.getIdFenomenoNatural());
         ModelMapper m = new ModelMapper();
         FenomenoNatural fn = m.map(fnDTO, FenomenoNatural.class);
         fnS.update(fn);
@@ -62,6 +69,7 @@ public class FenomenoNaturalController {
 
     @GetMapping("/CantidadFenomenosNaturalesPorUbicacion")
     public List<CantidadUbicacionxFDTO> cantidadFenomeno(){
+        log.info("Solicitud GET para obtener la cantidad de fenomenos por ubicacion");
         List<CantidadUbicacionxFDTO> dtoLista = new ArrayList<>();
         List<String[]> filaLista=fnS.quantityFenomenoPorUbicacion();
         for(String[] columna:filaLista){
@@ -76,6 +84,7 @@ public class FenomenoNaturalController {
     @GetMapping("/HistoricoPorIntensidad")
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<HistoricoFenomenosDTO> obtenerHistoricoPorIntensidad() {
+        log.info("Solicitud GET para obtener el historial de fenomenos por intensidad");
         List<String[]> data = fnS.findHistoricoFenomenosPorIntensidad();
         List<HistoricoFenomenosDTO> dtos = new ArrayList<>();
 

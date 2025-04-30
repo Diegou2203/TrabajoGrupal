@@ -44,7 +44,6 @@ public class Usuario {
     private Ubicacion ubicacion;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idUsuario")
     private List<Rol> roles;
 
     public Usuario() { }

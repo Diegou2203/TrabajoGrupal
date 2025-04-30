@@ -2,7 +2,6 @@ package pe.edu.upc.safealertweb.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.safealertweb.dtos.UsuarioDTO;
 import pe.edu.upc.safealertweb.dtos.UsuariosAltoRiesgoDTO;
@@ -45,8 +44,8 @@ public class UsuarioController {
 
 
     @DeleteMapping("/{idUsuario}")
-    public void eliminarUsuario(@PathVariable("idUsuario") int idFenomenoNatural) {
-        uS.delete(idFenomenoNatural);
+    public void eliminarUsuario(@PathVariable("idUsuario") int idUsuario) {
+        uS.delete(idUsuario);
     }
 
 
@@ -59,17 +58,16 @@ public class UsuarioController {
     }
 
     @GetMapping("/ListaUsuariosPorZonasAltoRiesgo")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public List<UsuariosAltoRiesgoDTO> ListarUsuariosEnZonasDeAltoRiesgo() {
         List<String[]> data = uS.findUsuariosEnZonasDeAltoRiesgo();
         List<UsuariosAltoRiesgoDTO> dtos = new ArrayList<>();
 
-        for (String[] row : data) {
+        for (String[] columna : data) {
             UsuariosAltoRiesgoDTO dto = new UsuariosAltoRiesgoDTO();
-            dto.setUsername(row[0]);
-            dto.setTelefono(row[1]);
-            dto.setCorreo(row[2]);
-            dto.setCiudad(row[3]);
+            dto.setUsername(columna[0]);
+            dto.setTelefono(columna[1]);
+            dto.setCorreo(columna[2]);
+            dto.setCiudad(columna[3]);
             dtos.add(dto);
         }
         return dtos;

@@ -59,7 +59,6 @@ public class RespuestaController {
 
     //DELETE
     @DeleteMapping("/{idRespuesta}")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("idRespuesta") int idRespuesta) {
         reS.delete(idRespuesta);
     }

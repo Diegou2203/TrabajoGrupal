@@ -61,7 +61,7 @@ public class UsuarioDTO {
         this.password = password;
     }
 
-    public boolean isEnabled() {
+    public boolean getEnabled() {
         return enabled;
     }
 
